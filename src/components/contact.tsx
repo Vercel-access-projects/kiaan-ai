@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Send, CheckCircle } from "lucide-react";
-import { sendEmail } from "@/app/actions/send-email";
+
 
 export function Contact() {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,12 +14,26 @@ export function Contact() {
         setIsSubmitting(true);
 
         const formData = new FormData(e.currentTarget);
-        const result = await sendEmail(formData);
+        formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY as string);
+        formData.append("from_name", "Kiaan AI Website");
 
-        if (result.success) {
-            setSuccess(true);
-        } else {
-            alert("Something went wrong. Please try again.");
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                setSuccess(true);
+            } else {
+                console.error("Web3Forms Error:", result);
+                alert("Something went wrong. Please try again.");
+            }
+        } catch (error) {
+            console.error("Submission Error:", error);
+            alert("Something went wrong. Please check your connection.");
         }
 
         setIsSubmitting(false);
