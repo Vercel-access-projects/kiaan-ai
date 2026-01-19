@@ -68,7 +68,7 @@ export function Contact() {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-white mb-1">Email Us</h3>
-                                        <p className="text-slate-400">accounts@kiaanai.com</p>
+                                        <p className="text-slate-400">ashishkundnani@kiaanai.com</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
@@ -77,7 +77,7 @@ export function Contact() {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-white mb-1">Call Us</h3>
-                                        <p className="text-slate-400">+91 981-230-4567</p>
+                                        <p className="text-slate-400">+91 99108 01769</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
